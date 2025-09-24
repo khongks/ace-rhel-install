@@ -41,21 +41,21 @@
    ```
    tar xzf 13.0-ACE-LINUXX64-13.0.4.2.tar.gz
    ```
-   If no IBM App Connect Enterprise Toolkit
+   (optional) If no IBM App Connect Enterprise Toolkit
    ```
-   tar xzf 13.0-ACE-LINUXX64-13.0.4.2.tar.gz --exclude ace-13.0.n.0/tools
+   tar xzf 13.0-ACE-LINUXX64-13.0.4.2.tar.gz --exclude ace-13.0.4.2/tools
    ```
-   If no IBM App Connect Enterprise Connector Discovery and OpenAPI Editor
+   (optional) If no IBM App Connect Enterprise Connector Discovery and OpenAPI Editor
    ```
-   tar xzf 13.0-ACE-LINUXX64-13.0.4.2.tar.gz --exclude ace-13.0.n.0/tools/tkelectronapp
+   tar xzf 13.0-ACE-LINUXX64-13.0.4.2.tar.gz --exclude ace-13.0.4.2/tools/tkelectronapp
    ```
-   If no WebSphere Service Registry and Repository nodes
+   (optional) If no WebSphere Service Registry and Repository nodes
    ```
-   tar xzf 13.0-ACE-LINUXX64-13.0.4.2.tar.gz --exclude ace-13.0.n.0/server/wsrrcomponent
+   tar xzf 13.0-ACE-LINUXX64-13.0.4.2.tar.gz --exclude ace-13.0.4.2/server/wsrrcomponent
    ```
-   If no IBM App Connect Enterprise Cloud Connectors
+   (optional) If no IBM App Connect Enterprise Cloud Connectors
    ```
-   tar xzf 13.0-ACE-LINUXX64-13.0.4.2.tar.gz --exclude ace-13.0.n.0/server/nodejs_all
+   tar xzf 13.0-ACE-LINUXX64-13.0.4.2.tar.gz --exclude ace-13.0.4.2/server/nodejs_all
    ```
 
 1. Move the extracted folder to target install folder.
