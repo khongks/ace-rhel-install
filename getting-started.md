@@ -28,8 +28,8 @@
 
 [IBM Doc reference](https://www.ibm.com/docs/en/app-connect/13.0.x?topic=software-installing-linux)
 
-1. For shared installation, login as
-   - root
+1. For shared installation, either login as
+   - root or
    - non-root user who is a member of mqbrkrs and has write access to the `/var/mqsi` directory.
 
 1. Use target instalation folder /opt/IBM
