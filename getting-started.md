@@ -160,7 +160,7 @@
 
 1. Start integration node - this time you need to specify the vault key
    ```
-   ibmint start node INODE01 --external-directory-vault-key Passw0rd!
+   ibmint start node INODE01 --external-directory-vault-key <password>
    
    BIP8873I: Starting the component verification for component 'INODE01'. 
    BIP8096I: Successful command initiation, check the system log to ensure that the component started without problem and that it continues to run without problem.
