@@ -135,7 +135,7 @@
 
    ![alt text](images/server-started.png)
 
-## (Optionals) Configure existing integration node with external vault
+## (Optional) Configure existing integration node with external vault
 
 1. Create an external vault.
    ```
@@ -166,7 +166,7 @@
    BIP8096I: Successful command initiation, check the system log to ensure that the component started without problem and that it continues to run without problem.
    ```
 
-## (Optionals) Manage credentials in vault
+## (Optional) Manage credentials in vault
 
 1. Display credential types.
    ```
