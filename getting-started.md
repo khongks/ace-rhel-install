@@ -202,7 +202,7 @@
    ```
    ibmint stop node INODE01
    
-   ibmint unset credential --credential-type cics --credential-name cics-cred --external-directory-vault /var/mqsi/vault --external-directory-vault-key Passw0rd!
+   ibmint unset credential --credential-type cics --credential-name cics-cred --external-directory-vault /var/mqsi/vault --external-directory-vault-key <password>
    
    BIP15119I: The 'Delete' action was successful for credential name 'cics-cred' of type 'cics'. 
    BIP8071I: Successful command completion. 
