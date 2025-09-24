@@ -41,19 +41,19 @@
    ```
    tar xzf 13.0-ACE-LINUXX64-13.0.4.2.tar.gz
    ```
-   (optional) If no IBM App Connect Enterprise Toolkit
+   or if no IBM App Connect Enterprise Toolkit
    ```
    tar xzf 13.0-ACE-LINUXX64-13.0.4.2.tar.gz --exclude ace-13.0.4.2/tools
    ```
-   (optional) If no IBM App Connect Enterprise Connector Discovery and OpenAPI Editor
+   or if no IBM App Connect Enterprise Connector Discovery and OpenAPI Editor
    ```
    tar xzf 13.0-ACE-LINUXX64-13.0.4.2.tar.gz --exclude ace-13.0.4.2/tools/tkelectronapp
    ```
-   (optional) If no WebSphere Service Registry and Repository nodes
+   or if no WebSphere Service Registry and Repository nodes
    ```
    tar xzf 13.0-ACE-LINUXX64-13.0.4.2.tar.gz --exclude ace-13.0.4.2/server/wsrrcomponent
    ```
-   (optional) If no IBM App Connect Enterprise Cloud Connectors
+   or if no IBM App Connect Enterprise Cloud Connectors
    ```
    tar xzf 13.0-ACE-LINUXX64-13.0.4.2.tar.gz --exclude ace-13.0.4.2/server/nodejs_all
    ```
