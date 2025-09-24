@@ -7,7 +7,7 @@
    - Red Hat Enterprise Linux (RHEL) 9 x86-64 (Update 9.6)
    - CPU: 2 vCPU
    - Mem: 8 GB
-   - Disk: 50 GB
+   - Disk: 100 GB
 
 1. Check if SELinux is enabled
    ```
