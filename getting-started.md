@@ -9,20 +9,20 @@
    - Mem: 8 GB
    - Disk: 100 GB
 
-1. Check if SELinux is enabled
+1. Check if SELinux is enabled.
    ```
    sestatus
    ```
 
    If enabled, review this [page](https://www.ibm.com/support/pages/node/6406668)
 
-1. Security requirements in Linux
+1. Security requirements in Linux.
    
    *To deploy a shared installation of IBM App Connect Enterprise on Linux or UNIX systems, you must log in as root or as a super user who has write access to the /var directory. After the deployment, a security group that is called mqbrkrs is created (if this group does not already exist). To enable users to use the shared installation of IBM App Connect Enterprise, add the users to the mqbrkrs group by using the security facilities that are provided by your operating system.*
 
-1. Ensure large enough /tmp folder (50MB per integration server)
+1. Ensure large enough /tmp folder (50MB per integration server).
 
-1. Download latest installation image with fixpack from [Fix Central](https://www.ibm.com/support/pages/node/7242770)
+1. Download latest installation image with fixpack from [Fix Central](https://www.ibm.com/support/pages/node/7242770).
 
 ## Installation 
 
@@ -39,28 +39,28 @@
 
 1. Unpack installation image
    ```
-   tar xzf 13.0-ACE-LINUXX64-13.0.4.2.tar.gz
+   tar xzf 13.0-ACE-LINUXX64-13.0.7.0.tar.gz
    ```
    or if no IBM App Connect Enterprise Toolkit
    ```
-   tar xzf 13.0-ACE-LINUXX64-13.0.4.2.tar.gz --exclude ace-13.0.4.2/tools
+   tar xzf 13.0-ACE-LINUXX64-13.0.7.0.tar.gz --exclude ace-13.0.7.0/tools
    ```
    or if no IBM App Connect Enterprise Connector Discovery and OpenAPI Editor
    ```
-   tar xzf 13.0-ACE-LINUXX64-13.0.4.2.tar.gz --exclude ace-13.0.4.2/tools/tkelectronapp
+   tar xzf 13.0-ACE-LINUXX64-13.0.7.0.tar.gz --exclude ace-13.0.7.0/tools/tkelectronapp
    ```
    or if no WebSphere Service Registry and Repository nodes
    ```
-   tar xzf 13.0-ACE-LINUXX64-13.0.4.2.tar.gz --exclude ace-13.0.4.2/server/wsrrcomponent
+   tar xzf 13.0-ACE-LINUXX64-13.0.7.0.tar.gz --exclude ace-13.0.7.0/server/wsrrcomponent
    ```
    or if no IBM App Connect Enterprise Cloud Connectors
    ```
-   tar xzf 13.0-ACE-LINUXX64-13.0.4.2.tar.gz --exclude ace-13.0.4.2/server/nodejs_all
+   tar xzf 13.0-ACE-LINUXX64-13.0.7.0.tar.gz --exclude ace-13.0.7.0/server/nodejs_all
    ```
 
 1. Move the extracted folder to target install folder.
    ```
-   mv ace-13.0.4.2 /opt/IBM
+   mv ace-13.0.7.0 /opt/IBM
    ```
 
 1. Accept license for shared installation. 
@@ -70,20 +70,27 @@
    - Key/certificate pair created for admin ssl
    - Key/certificate pair created for HTTPSConnector
    ```
-   cd /opt/IBM/ace-13.0.4.2
-   ./ace make registry global accept license 
+   cd /opt/IBM/ace-13.0.7.0
+   ./ace make registry global accept license
+
+   License accepted
+   Group 'mqbrkrs' will be created
+   Generated new installation wide admin ssl private key and certificate pair with details:
+   ...
+   Generated new installation wide HTTPSConnector ssl private key and certificate pair with details:
+   ...
    ```
 
 1. (Optional) Add other users in `mqbrkrs` user group.
    
 ## Setup MQSI profile
 
-1. Setup MQSI profile
+1. Setup MQSI profile.
    ```
-   . /opt/IBM/ace-13.0.4.2/server/bin/mqsiprofile
+   . /opt/IBM/ace-13.0.7.0/server/bin/mqsiprofile
    
-   MQSI 13.0.4.2
-   /opt/IBM/ace-13.0.4.2/server
+   MQSI 13.0.7.0
+   /opt/IBM/ace-13.0.7.0/server
    ```
    
 
@@ -91,7 +98,7 @@
 
 1. Create an integration node called `INODE01`.
    ```
-   ibmint create node INODE
+   ibmint create node INODE01
    BIP8071I: Successful command completion.
    ```
 
@@ -107,7 +114,7 @@
    BIP8096I: Successful command initiation, check the system log to ensure that the component started without problem and that it continues to run without problem.
    ```
 
-1. Verify integration node is started - the ACE web console should be up and running. Open a browser to
+1. Verify integration node is started - the ACE web console should be up and running. Open a browser to this URL.
 
    ```
    https://<hostname>:4414
@@ -124,7 +131,7 @@
    BIP1117I: The integration server was created successfully.
    ```
 
-1. Start integration server
+1. Start integration server.
    ```
    ibmint start server ISERVER01 --integration-node INODE01
    BIP1959I: Starting integration server 'ISERVER01' on integration node 'INODE01'... 
@@ -149,7 +156,7 @@
    ibmint stop node INODE01
    ```
 
-1. Override node.conf.yaml to add the following lines to associate the integration noode with an external vault
+1. Override node.conf.yaml to add the following lines to associate the integration noode with an external vault.
    ```
    vi /var/mqsi/components/INODE01/overrides/node.conf.yaml
 
@@ -158,7 +165,7 @@
        directory: '/var/mqsi/vault'
    ```
 
-1. Start integration node - this time you need to specify the vault key
+1. Start integration node - this time you need to specify the vault key.
    ```
    ibmint start node INODE01 --external-directory-vault-key <password>
    
@@ -173,7 +180,9 @@
    ibmint display credential-types
    ```
 
-1. Display credential properties for CICS
+### (Optional) Manage CICS credentials in vault
+
+1. Display credential properties for CICS.
    ```
    ibmint display credential-types --credential-type cics --show-auth-type
     
@@ -198,12 +207,46 @@
    BIP8071I: Successful command completion.
    ```
 
-1. Delete credential for CICS (before that you need to stop the node)
+1. Delete credential for CICS (before that you need to stop the node).
    ```
    ibmint stop node INODE01
    
    ibmint unset credential --credential-type cics --credential-name cics-cred --external-directory-vault /var/mqsi/vault --external-directory-vault-key <password>
    
    BIP15119I: The 'Delete' action was successful for credential name 'cics-cred' of type 'cics'. 
+   BIP8071I: Successful command completion. 
+   ```
+
+### (Optional) Manage Postgres credentials in vault
+
+1. Display credential properties for Postgres.
+   ```
+   ibmint display credential-types --credential-type postgres --show-auth-type
+   BIP15343I: Credential properties currently supported for postgres are as follows.
+      
+  --auth-type basic --username <arg> --password <arg>
+  --auth-type basicTLS [--username <arg>] [--password <arg>] --server-certificate <arg>
+   ```
+
+1. Set credentials for Postgres.
+   ```
+   ibmint set credential --credential-type postgres --external-directory-vault /var/mqsi/vault --external-directory-vault-key <password> --credential-name postgres-cred --auth-type basic --username postgres --password <postgresPassword>
+   ```
+
+1. Display credentials for Postgres.
+   ```
+   ibmint display credentials --credential-type postgres --external-directory-vault /var/mqsi/vault --external-directory-vault-key <password> --credential-name postgres-cred
+   
+   BIP15110I: The credential name 'postgres-cred' of type 'postgres' contains user name 'postgres' from provider 'extdirvault' and has the following properties defined: 'password', authentication type 'basic'. 
+   BIP8071I: Successful command completion.
+   ```
+
+1. Delete credential for Postgres (before that you need to stop the node).
+   ```
+   ibmint stop node INODE01
+   
+   ibmint unset credential --credential-type postgres --credential-name postgres-cred --external-directory-vault /var/mqsi/vault --external-directory-vault-key <password>
+   
+   BIP15119I: The 'Delete' action was successful for credential name 'postgres-cred' of type 'postgres'. 
    BIP8071I: Successful command completion. 
    ```
