@@ -223,9 +223,8 @@
    ```
    ibmint display credential-types --credential-type postgres --show-auth-type
    BIP15343I: Credential properties currently supported for postgres are as follows.
-      
-  --auth-type basic --username <arg> --password <arg>
-  --auth-type basicTLS [--username <arg>] [--password <arg>] --server-certificate <arg>
+      --auth-type basic --username <arg> --password <arg>
+      --auth-type basicTLS [--username <arg>] [--password <arg>] --server-certificate <arg>
    ```
 
 1. Set credentials for Postgres.
