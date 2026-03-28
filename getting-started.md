@@ -244,9 +244,7 @@
 1. Delete credential for Postgres (before that you need to stop the node).
    ```
    ibmint stop node INODE01
-   
    ibmint unset credential --credential-type postgres --credential-name postgres-cred --external-directory-vault /var/mqsi/vault --external-directory-vault-key <password>
-   
    BIP15119I: The 'Delete' action was successful for credential name 'postgres-cred' of type 'postgres'. 
    BIP8071I: Successful command completion. 
    ```
