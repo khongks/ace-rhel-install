@@ -29,3 +29,8 @@
    sudo firewall-cmd --permanent --add-port=7843-7848/tcp
    sudo firewall-cmd --permanent --add-port=7750-7755/tcp
    ```
+
+1. Reload the firewall
+   ```
+   sudo firewall-cmd --reload
+   ```
