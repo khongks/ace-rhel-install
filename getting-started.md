@@ -82,6 +82,10 @@
    ```
 
 1. (Optional) Add other users in `mqbrkrs` user group.
+   ```
+   sudo usermod -aG mqbrkrs aceuser
+   ```
+   
    
 ## Setup MQSI profile
 
