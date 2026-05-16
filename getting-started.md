@@ -71,8 +71,11 @@
    - Key/certificate pair created for HTTPSConnector
    ```
    cd /opt/ibm/ace-13.0.7.1
+   ```
+   ```
    ./ace make registry global accept license
-
+   ```
+   ```
    License accepted
    Group 'mqbrkrs' will be created
    Generated new installation wide admin ssl private key and certificate pair with details:
