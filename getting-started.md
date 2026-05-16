@@ -32,35 +32,35 @@
    - root or
    - non-root user who is a member of mqbrkrs and has write access to the `/var/mqsi` directory.
 
-1. Use target instalation folder /opt/IBM
+1. Use target instalation folder /opt/ibm
    ```
-   mkdir -p /opt/IBM
+   mkdir -p /opt/ibm
    ```
 
 1. Unpack installation image
    ```
-   tar xzf 13.0-ACE-LINUXX64-13.0.7.0.tar.gz
+   tar xzf 13.0-ACE-LINUXX64-13.0.7.1.tar.gz
    ```
    or if no IBM App Connect Enterprise Toolkit
    ```
-   tar xzf 13.0-ACE-LINUXX64-13.0.7.0.tar.gz --exclude ace-13.0.7.0/tools
+   tar xzf 13.0-ACE-LINUXX64-13.0.7.1.tar.gz --exclude ace-13.0.7.1/tools
    ```
    or if no IBM App Connect Enterprise Connector Discovery and OpenAPI Editor
    ```
-   tar xzf 13.0-ACE-LINUXX64-13.0.7.0.tar.gz --exclude ace-13.0.7.0/tools/tkelectronapp
+   tar xzf 13.0-ACE-LINUXX64-13.0.7.1.tar.gz --exclude ace-13.0.7.1/tools/tkelectronapp
    ```
    or if no WebSphere Service Registry and Repository nodes
    ```
-   tar xzf 13.0-ACE-LINUXX64-13.0.7.0.tar.gz --exclude ace-13.0.7.0/server/wsrrcomponent
+   tar xzf 13.0-ACE-LINUXX64-13.0.7.1.tar.gz --exclude ace-13.0.7.1/server/wsrrcomponent
    ```
    or if no IBM App Connect Enterprise Cloud Connectors
    ```
-   tar xzf 13.0-ACE-LINUXX64-13.0.7.0.tar.gz --exclude ace-13.0.7.0/server/nodejs_all
+   tar xzf 13.0-ACE-LINUXX64-13.0.7.1.tar.gz --exclude ace-13.0.7.1/server/nodejs_all
    ```
 
 1. Move the extracted folder to target install folder.
    ```
-   mv ace-13.0.7.0 /opt/IBM
+   mv ace-13.0.7.1 /opt/ibm
    ```
 
 1. Accept license for shared installation. 
@@ -70,7 +70,7 @@
    - Key/certificate pair created for admin ssl
    - Key/certificate pair created for HTTPSConnector
    ```
-   cd /opt/IBM/ace-13.0.7.0
+   cd /opt/ibm/ace-13.0.7.1
    ./ace make registry global accept license
 
    License accepted
@@ -85,18 +85,17 @@
    ```
    sudo usermod -aG mqbrkrs aceuser
    ```
-   
-   
+
 ## Setup MQSI profile
 
 1. Setup MQSI profile.
    ```
-   . /opt/IBM/ace-13.0.7.0/server/bin/mqsiprofile
-   
-   MQSI 13.0.7.0
-   /opt/IBM/ace-13.0.7.0/server
+   . /opt/ibm/ace-13.0.7.1/server/bin/mqsiprofile
    ```
-   
+   ```
+   MQSI 13.0.7.1
+   /opt/ibm/ace-13.0.7.1/server
+   ```
 
 ## Create integration node
 
@@ -114,6 +113,8 @@
 1. Start integration node.
    ```
    ibmint start node INODE01
+   ```
+   ```
    BIP8873I: Starting the component verification for component 'INODE01'.
    BIP8096I: Successful command initiation, check the system log to ensure that the component started without problem and that it continues to run without problem.
    ```
@@ -131,6 +132,8 @@
 1. Create integration server called `ISERVER01`.
    ```
    ibmint create server ISERVER01 --integration-node INODE01
+   ```
+   ```
    BIP1124I: Creating integration server 'ISERVER01' on integration node 'INODE01'... 
    BIP1117I: The integration server was created successfully.
    ```
@@ -138,6 +141,8 @@
 1. Start integration server.
    ```
    ibmint start server ISERVER01 --integration-node INODE01
+   ```
+   ```
    BIP1959I: Starting integration server 'ISERVER01' on integration node 'INODE01'... 
    BIP1960I: The integration server 'ISERVER01' on integration node 'INODE01' is reported as started.
    ```
@@ -214,9 +219,11 @@
 1. Delete credential for CICS (before that you need to stop the node).
    ```
    ibmint stop node INODE01
-   
+   ```
+   ```
    ibmint unset credential --credential-type cics --credential-name cics-cred --external-directory-vault /var/mqsi/vault --external-directory-vault-key <password>
-   
+   ```
+   ```
    BIP15119I: The 'Delete' action was successful for credential name 'cics-cred' of type 'cics'. 
    BIP8071I: Successful command completion. 
    ```
@@ -226,6 +233,8 @@
 1. Display credential properties for Postgres.
    ```
    ibmint display credential-types --credential-type postgres --show-auth-type
+   ```
+   ```
    BIP15343I: Credential properties currently supported for postgres are as follows.
       --auth-type basic --username <arg> --password <arg>
       --auth-type basicTLS [--username <arg>] [--password <arg>] --server-certificate <arg>
@@ -239,7 +248,8 @@
 1. Display credentials for Postgres.
    ```
    ibmint display credentials --credential-type postgres --external-directory-vault /var/mqsi/vault --external-directory-vault-key <password> --credential-name postgres-cred
-   
+   ```
+   ```
    BIP15110I: The credential name 'postgres-cred' of type 'postgres' contains user name 'postgres' from provider 'extdirvault' and has the following properties defined: 'password', authentication type 'basic'. 
    BIP8071I: Successful command completion.
    ```
@@ -247,7 +257,11 @@
 1. Delete credential for Postgres (before that you need to stop the node).
    ```
    ibmint stop node INODE01
+   ```
+   ```
    ibmint unset credential --credential-type postgres --credential-name postgres-cred --external-directory-vault /var/mqsi/vault --external-directory-vault-key <password>
+   ```
+   ```
    BIP15119I: The 'Delete' action was successful for credential name 'postgres-cred' of type 'postgres'. 
    BIP8071I: Successful command completion. 
    ```
