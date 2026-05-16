@@ -105,6 +105,8 @@
 1. Create an integration node called `INODE01`.
    ```
    ibmint create node INODE01
+   ```
+   ```
    BIP8071I: Successful command completion.
    ```
 
@@ -159,7 +161,8 @@
 1. Create an external vault.
    ```
    mkdir -p /var/mqsi/vault
-   
+   ```
+   ```
    ibmint create vault /var/mqsi/vault --external-directory-vault-key <password>
    ```
 
@@ -171,7 +174,8 @@
 1. Override node.conf.yaml to add the following lines to associate the integration noode with an external vault.
    ```
    vi /var/mqsi/components/INODE01/overrides/node.conf.yaml
-
+   ```
+   ```
    Credentials:
      ExternalDirectoryVault:
        directory: '/var/mqsi/vault'
@@ -180,7 +184,8 @@
 1. Start integration node - this time you need to specify the vault key.
    ```
    ibmint start node INODE01 --external-directory-vault-key <password>
-   
+   ```
+   ```
    BIP8873I: Starting the component verification for component 'INODE01'. 
    BIP8096I: Successful command initiation, check the system log to ensure that the component started without problem and that it continues to run without problem.
    ```
@@ -197,7 +202,8 @@
 1. Display credential properties for CICS.
    ```
    ibmint display credential-types --credential-type cics --show-auth-type
-    
+   ```
+   ```
    BIP15343I: Credential properties currently supported for cics are as follows.   
       --auth-type basic --username <arg> --password <arg>
       --auth-type username --username <arg>
@@ -206,7 +212,8 @@
 1. Set credentials for CICS.
    ```
    ibmint set credential --credential-type cics --external-directory-vault /var/mqsi/vault --external-directory-vault-key <password> --credential-name cics-cred --auth-type basic --username cicsuser --password <cicspassword>
-
+   ```
+   ```
    BIP15119I: The 'CREATE' action was successful for credential name 'cics-cred' of type 'cics'. 
    BIP8071I: Successful command completion.
    ```
@@ -214,7 +221,8 @@
 1. Display credentials for CICS.
    ```
    ibmint display credentials --credential-type cics --external-directory-vault /var/mqsi/vault --external-directory-vault-key <password> --credential-name cics-cred
-   
+   ```
+   ```
    BIP15110I: The credential name 'cics-cred' of type 'cics' contains user name 'cicsuser' from provider 'extdirvault' and has the following properties defined: '**********', authentication type 'basic'. 
    BIP8071I: Successful command completion.
    ```
