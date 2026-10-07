@@ -22,7 +22,7 @@
 
 1. Ensure large enough /tmp folder (50MB per integration server).
 
-1. Download latest installation image with fixpack from [Fix Central](https://www.ibm.com/support/pages/node/7242770).
+1. Download latest installation image with fixpack from [Fix Central](https://www.ibm.com/support/fixcentral).
 
 ## Installation 
 
@@ -39,28 +39,28 @@
 
 1. Unpack installation image
    ```
-   tar xzf 13.0-ACE-LINUXX64-13.0.7.1.tar.gz
+   tar xzf 13.0-ACE-LINUXX64-13.0.9.0.tar.gz
    ```
    or if no IBM App Connect Enterprise Toolkit
    ```
-   tar xzf 13.0-ACE-LINUXX64-13.0.7.1.tar.gz --exclude ace-13.0.7.1/tools
+   tar xzf 13.0-ACE-LINUXX64-13.0.9.0.tar.gz --exclude ace-13.0.9.0/tools
    ```
    or if no IBM App Connect Enterprise Connector Discovery and OpenAPI Editor
    ```
-   tar xzf 13.0-ACE-LINUXX64-13.0.7.1.tar.gz --exclude ace-13.0.7.1/tools/tkelectronapp
+   tar xzf 13.0-ACE-LINUXX64-13.0.9.0.tar.gz --exclude ace-13.0.9.0/tools/tkelectronapp
    ```
    or if no WebSphere Service Registry and Repository nodes
    ```
-   tar xzf 13.0-ACE-LINUXX64-13.0.7.1.tar.gz --exclude ace-13.0.7.1/server/wsrrcomponent
+   tar xzf 13.0-ACE-LINUXX64-13.0.9.0.tar.gz --exclude ace-13.0.9.0/server/wsrrcomponent
    ```
    or if no IBM App Connect Enterprise Cloud Connectors
    ```
-   tar xzf 13.0-ACE-LINUXX64-13.0.7.1.tar.gz --exclude ace-13.0.7.1/server/nodejs_all
+   tar xzf 13.0-ACE-LINUXX64-13.0.9.0.tar.gz --exclude ace-13.0.9.0/server/nodejs_all
    ```
 
 1. Move the extracted folder to target install folder.
    ```
-   mv ace-13.0.7.1 /opt/ibm
+   mv ace-13.0.9.0 /opt/ibm
    ```
 
 1. Accept license for shared installation. 
@@ -70,10 +70,10 @@
    - Key/certificate pair created for admin ssl
    - Key/certificate pair created for HTTPSConnector
    ```
-   cd /opt/ibm/ace-13.0.7.1
+   cd /opt/ibm/ace-13.0.9.0
    ```
    ```
-   ./ace make registry global accept license
+   ./ace accept license --make-registry-global
    ```
    ```
    License accepted
@@ -86,6 +86,8 @@
 
 1. (Optional) Add other users in `mqbrkrs` user group.
    ```
+   sudo useradd -m aceuser
+   sudo passwd aceuser
    sudo usermod -aG mqbrkrs aceuser
    ```
 
@@ -93,11 +95,11 @@
 
 1. Setup MQSI profile.
    ```
-   . /opt/ibm/ace-13.0.7.1/server/bin/mqsiprofile
+   . /opt/ibm/ace-13.0.9.0/server/bin/mqsiprofile
    ```
    ```
-   MQSI 13.0.7.1
-   /opt/ibm/ace-13.0.7.1/server
+   MQSI 13.0.9.0
+   /opt/ibm/ace-13.0.9.0/server
    ```
 
 ## Create integration node
