@@ -84,6 +84,11 @@
    ...
    ```
 
+1. Change the ace installed folder group ownership to `mqbrkrs`.
+   ```
+   chgrp -R group_name /opt/ibm/ace-13.0.9.0
+   ```
+
 1. (Optional) Add other users in `mqbrkrs` user group.
    ```
    sudo useradd -m aceuser
